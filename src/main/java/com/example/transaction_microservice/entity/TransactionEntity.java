@@ -9,8 +9,11 @@ public class TransactionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "transaction_number")
+    private Long transactionNumber;
+
     @Column(name = "transaction_id")
-    private Long transactionId;
+    private String transactionId;
 
     @Column(name = "loan_approval_id", nullable = false)
     private Long loanApprovalId;
@@ -24,27 +27,37 @@ public class TransactionEntity {
     @Column(name = "payment_method", nullable = false)
     private String paymentMethod;
 
-    @Column(name = "total_amount", nullable = false)
+    @Column(name = "total_amount")
     private Double totalAmount;
 
-    @Column(name = "pending_amount", nullable = false)
+    @Column(name = "pending_amount")
     private Double pendingAmount;
 
-    @Column(name = "amount_paid", nullable = false)
+    @Column(name = "amount_paid")
     private Double amountPaid;
 
-    @Column(name = "monthly_payment", nullable = false)
+    @Column(name = "monthly_payment")
     private Double monthlyPayment;
 
-    @Column(name = "status", nullable = false)
-    private String status;
+    @Column(name = "status")
+    private String status = "PENDING";
 
-    // Getters and Setters
-    public Long getTransactionId() {
+    
+    public Long getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    public void setTransactionId(Long transactionNumber) {
+        this.transactionNumber = transactionNumber;
+    }
+
+    
+
+    public String getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(Long transactionId) {
+    public void setTransactionId(String transactionId) {
         this.transactionId = transactionId;
     }
 
