@@ -11,6 +11,8 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/transactions")
+@CrossOrigin(origins = "http://localhost:5173")
+
 public class TransactionController {
 
     @Autowired
@@ -44,11 +46,9 @@ public class TransactionController {
         return ResponseEntity.ok(transaction);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<TransactionEntity> updateTransactionByAdmin(@RequestBody Long approvalId ,@RequestBody String status 
-                                                                     ,@RequestBody  Double totalAmount ,@RequestBody  Double pendingAmount 
-                                                                     ,@RequestBody Double amountPaid ,@RequestBody Double monthlyPayment  ) {
-        TransactionEntity transaction = transactionService.updateTransactionByAdmin(approvalId , status , totalAmount , pendingAmount , amountPaid , monthlyPayment);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<TransactionEntity> updateTransactionByAdmin(@PathVariable Long id ,@RequestBody TransactionEntity transaction ) {
+        transaction = transactionService.updateTransactionByAdmin(id , transaction.getStatus(), transaction.getTotalAmount() , transaction.getPendingAmount() , transaction.getAmountPaid() , transaction.getMonthlyPayment());
         return ResponseEntity.ok(transaction);
     }
 
