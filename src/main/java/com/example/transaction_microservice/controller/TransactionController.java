@@ -44,6 +44,14 @@ public class TransactionController {
         return ResponseEntity.ok(transaction);
     }
 
+    @PutMapping("/update")
+    public ResponseEntity<TransactionEntity> updateTransactionByAdmin(@RequestBody Long approvalId ,@RequestBody String status 
+                                                                     ,@RequestBody  Double totalAmount ,@RequestBody  Double pendingAmount 
+                                                                     ,@RequestBody Double amountPaid ,@RequestBody Double monthlyPayment  ) {
+        TransactionEntity transaction = transactionService.updateTransactionByAdmin(approvalId , status , totalAmount , pendingAmount , amountPaid , monthlyPayment);
+        return ResponseEntity.ok(transaction);
+    }
+
     // Delete transaction
     @DeleteMapping("/{transactionId}")
     public ResponseEntity<Void> deleteTransaction(@PathVariable Long transactionId) {
